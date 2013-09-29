@@ -3,7 +3,7 @@ package main
 
 import "fmt"
 
-import "github.com/axw/gollvm/llvm"
+import "github.com/chanwit/gollvm/llvm"
 
 func test() {
 	llvm.LinkInJIT()
@@ -28,7 +28,7 @@ func test() {
 	builder := llvm.NewBuilder()
 	defer builder.Dispose()
 
-	builder.SetInsertPointAtEnd(entry)
+	builder.SetInsertPointAtEnd(entry);
 	If := builder.CreateICmp(llvm.IntEQ, n, llvm.ConstInt(llvm.Int32Type(), 0, false), "cmptmp")
 	builder.CreateCondBr(If, iftrue, iffalse)
 

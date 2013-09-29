@@ -1,4 +1,3 @@
-/* include/llvm/Config/llvm-config.h.  Generated from llvm-config.h.in by configure.  */
 /*===-- llvm/config/llvm-config.h - llvm configure variable -------*- C -*-===*/
 /*                                                                            */
 /*                     The LLVM Compiler Infrastructure                       */
@@ -18,43 +17,43 @@
 #ifndef CONFIG_H
 
 /* Installation directory for binary executables */
-#define LLVM_BINDIR "/usr/local/bin"
+/* #undef LLVM_BINDIR */
 
 /* Time at which LLVM was configured */
-#define LLVM_CONFIGTIME "Sat Sep 22 15:55:00 WST 2012"
+/* #undef LLVM_CONFIGTIME */
 
 /* Installation directory for data files */
-#define LLVM_DATADIR "/usr/local/share/llvm"
+/* #undef LLVM_DATADIR */
 
 /* Target triple LLVM will generate code for by default */
-#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-unknown-linux-gnu"
+#define LLVM_DEFAULT_TARGET_TRIPLE "i686-pc-mingw32"
 
 /* Installation directory for documentation */
-#define LLVM_DOCSDIR "/usr/local/share/doc/llvm"
+/* #undef LLVM_DOCSDIR */
 
 /* Define if threads enabled */
 #define LLVM_ENABLE_THREADS 1
 
 /* Installation directory for config files */
-#define LLVM_ETCDIR "/usr/local/etc/llvm"
+/* #undef LLVM_ETCDIR */
 
 /* Has gcc/MSVC atomic intrinsics */
 #define LLVM_HAS_ATOMICS 1
 
 /* Host triple LLVM will be executed on */
-#define LLVM_HOSTTRIPLE "x86_64-unknown-linux-gnu"
+#define LLVM_HOST_TRIPLE "i686-pc-mingw32"
 
 /* Installation directory for include files */
-#define LLVM_INCLUDEDIR "/usr/local/include"
+/* #undef LLVM_INCLUDEDIR */
 
 /* Installation directory for .info files */
-#define LLVM_INFODIR "/usr/local/info"
+/* #undef LLVM_INFODIR */
 
 /* Installation directory for libraries */
-#define LLVM_LIBDIR "/usr/local/lib"
+/* #undef LLVM_LIBDIR */
 
 /* Installation directory for man pages */
-#define LLVM_MANDIR "/usr/local/man"
+/* #undef LLVM_MANDIR */
 
 /* LLVM architecture name for the native architecture, if available */
 #define LLVM_NATIVE_ARCH X86
@@ -78,10 +77,10 @@
 #define LLVM_NATIVE_TARGETMC LLVMInitializeX86TargetMC
 
 /* Define if this is Unixish platform */
-#define LLVM_ON_UNIX 1
+/* #undef LLVM_ON_UNIX */
 
 /* Define if this is Win32ish platform */
-/* #undef LLVM_ON_WIN32 */
+#define LLVM_ON_WIN32 1
 
 /* Define to path to circo program if found or 'echo circo' otherwise */
 /* #undef LLVM_PATH_CIRCO */
@@ -111,12 +110,21 @@
 /* #undef LLVM_PATH_XDOT_PY */
 
 /* Installation prefix directory */
-#define LLVM_PREFIX "/usr/local"
+#define LLVM_PREFIX "C:/LLVM/llvm-3.3"
+
+/* Define if we have the Intel JIT API runtime support library */
+/* #undef LLVM_USE_INTEL_JITEVENTS */
+
+/* Define if we have the oprofile JIT-support library */
+/* #undef LLVM_USE_OPROFILE */
 
 /* Major version of the LLVM API */
 #define LLVM_VERSION_MAJOR 3
 
 /* Minor version of the LLVM API */
-#define LLVM_VERSION_MINOR 2
+#define LLVM_VERSION_MINOR 3
+
+/* Define to 1 if you have the <sanitizer/msan_interface.h> header file. */
+/* #undef HAVE_SANITIZER_MSAN_INTERFACE_H */
 
 #endif

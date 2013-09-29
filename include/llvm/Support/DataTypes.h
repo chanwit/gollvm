@@ -1,4 +1,3 @@
-/* include/llvm/Support/DataTypes.h.  Generated from DataTypes.h.in by configure.  */
 /*===-- include/Support/DataTypes.h - Define fixed size types -----*- C -*-===*\
 |*                                                                            *|
 |*                     The LLVM Compiler Infrastructure                       *|
@@ -22,7 +21,7 @@
 
 /* Please leave this file C-compatible. */
 
-/* Please keep this file in sync with DataTypes.h.cmake */
+/* Please keep this file in sync with DataTypes.h.in */
 
 #ifndef SUPPORT_DATATYPES_H
 #define SUPPORT_DATATYPES_H
@@ -83,6 +82,9 @@ typedef u_int64_t uint64_t;
 #else /* _MSC_VER */
 /* Visual C++ doesn't provide standard integer headers, but it does provide
    built-in data types. */
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
+#endif
 #include <stdlib.h>
 #include <stddef.h>
 #include <sys/types.h>

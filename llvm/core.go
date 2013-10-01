@@ -2,7 +2,7 @@ package llvm
 
 /*
 #cgo CFLAGS: -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS
-#cgo LDFLAGS: -lm -lpthread -lpsapi -lstdc++ -lLLVM-3.3
+#cgo LDFLAGS: -lm -lpthread -lpsapi -lstdc++ -limagehlp `llvm-config --libs`
 #include <llvm-c/Core.h>
 #include <stdlib.h>
 */

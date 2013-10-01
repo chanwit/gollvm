@@ -8,6 +8,8 @@ import "C"
 import "unsafe"
 import "errors"
 
+import "fmt"
+
 func LinkInJIT()         { C.LLVMLinkInJIT() }
 func LinkInInterpreter() { C.LLVMLinkInInterpreter() }
 

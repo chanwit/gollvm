@@ -20,6 +20,7 @@ func test() {
 	fac.SetFunctionCallConv(llvm.CCallConv)
 	n := fac.Param(0)
 
+
 	entry := llvm.AddBasicBlock(fac, "entry")
 	iftrue := llvm.AddBasicBlock(fac, "iftrue")
 	iffalse := llvm.AddBasicBlock(fac, "iffalse")
@@ -28,16 +29,21 @@ func test() {
 	builder := llvm.NewBuilder()
 	defer builder.Dispose()
 
+    fmt.Println("DEBUG >>>>")
+
 	builder.SetInsertPointAtEnd(entry);
-	If := builder.CreateICmp(llvm.IntEQ, n, llvm.ConstInt(llvm.Int32Type(), 0, false), "cmptmp")
+    fmt.Println("DEBUG 2 >>>>")
+	If := builder.CreateICmp(llvm.IntEQ, n, llvm.ConstIntFromString(llvm.Int32Type(), "0", 0), "cmptmp")
+    fmt.Println("DEBUG 3 >>>>")
 	builder.CreateCondBr(If, iftrue, iffalse)
 
 	builder.SetInsertPointAtEnd(iftrue)
-	res_iftrue := llvm.ConstInt(llvm.Int32Type(), 1, false)
+	res_iftrue := llvm.ConstIntFromString(llvm.Int32Type(), "1", 0)
 	builder.CreateBr(end)
 
 	builder.SetInsertPointAtEnd(iffalse)
-	n_minus := builder.CreateSub(n, llvm.ConstInt(llvm.Int32Type(), 1, false), "subtmp")
+	n_minus := builder.CreateSub(n, llvm.ConstIntFromString(llvm.Int32Type(), "1", 0), "subtmp")
+    fmt.Println("DEBUG 4 >>>>")
 	call_fac_args := []llvm.Value{n_minus}
 	call_fac := builder.CreateCall(fac, call_fac_args, "calltmp")
 	res_iffalse := builder.CreateMul(n, call_fac, "multmp")
@@ -75,8 +81,8 @@ func test() {
 	pass.Run(mod)
 
 	mod.Dump()
-
-	exec_args := []llvm.GenericValue{llvm.NewGenericValueFromInt(llvm.Int32Type(), 10, false)}
+    fmt.Println("DEBUG 5 >>>>")
+	exec_args := []llvm.GenericValue{llvm.NewGenericValueFromInt(llvm.Int32Type(), 1, true)}
 	exec_res := engine.RunFunction(fac, exec_args)
 	fmt.Println("-----------------------------------------")
 	fmt.Println("Running fac(10) with JIT...")

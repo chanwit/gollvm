@@ -31,6 +31,10 @@ func llvmGenericValueRefPtr(t *GenericValue) *C.LLVMGenericValueRef {
 
 func NewGenericValueFromInt(t Type, n uint64, signed bool) (g GenericValue) {
 	g.C = C.LLVMCreateGenericValueOfInt(t.C, C.ulonglong(n), boolToLLVMBool(signed))
+	fmt.Printf("t.C:    %p\n", t.C)
+	fmt.Printf("g.C:    %p\n", g.C)
+	fmt.Printf("n:      %d\n", C.ulonglong(n))
+	fmt.Printf("signed: %d\n", boolToLLVMBool(signed))
 	return
 }
 func NewGenericValueFromPointer(p unsafe.Pointer) (g GenericValue) {

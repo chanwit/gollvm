@@ -19,7 +19,7 @@ func test() {
 	fac := llvm.AddFunction(mod, "fac", fac_type)
 	fac.SetFunctionCallConv(llvm.CCallConv)
 	n := fac.Param(0)
-
+    n.SetName("n")
 
 	entry := llvm.AddBasicBlock(fac, "entry")
 	iftrue := llvm.AddBasicBlock(fac, "iftrue")
@@ -82,7 +82,9 @@ func test() {
 
 	mod.Dump()
     fmt.Println("DEBUG 5 >>>>")
-	exec_args := []llvm.GenericValue{llvm.NewGenericValueFromInt(llvm.Int32Type(), 1, true)}
+    gv := llvm.NewGenericValueFromInt(llvm.Int32Type(), 10, true)
+    fmt.Printf("DEBUG >>> %p\n", gv.C)
+	exec_args := []llvm.GenericValue{gv}
 	exec_res := engine.RunFunction(fac, exec_args)
 	fmt.Println("-----------------------------------------")
 	fmt.Println("Running fac(10) with JIT...")

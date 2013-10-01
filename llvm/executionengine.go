@@ -129,12 +129,17 @@ func (ee ExecutionEngine) RunStaticDestructors()  { C.LLVMRunStaticDestructors(e
 
 func (ee ExecutionEngine) RunFunction(f Value, args []GenericValue) (g GenericValue) {
 	nargs := len(args)
+	refs := make([]C.LLVMGenericValueRef, nargs)
+	for i:=0;i<nargs;i++ {
+		refs[i] = args[i].C
+	}
+	/*
 	var argptr *GenericValue
 	if nargs > 0 {
 		argptr = &args[0]
 	}
-	g.C = C.LLVMRunFunction(ee.C, f.C,
-		C.unsigned(nargs), llvmGenericValueRefPtr(argptr))
+	*/
+	g.C = C.LLVMRunFunction(ee.C, f.C, C.unsigned(nargs), (*C.LLVMGenericValueRef)(unsafe.Pointer(&refs[0])))
 	return
 }
 

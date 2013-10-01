@@ -10,8 +10,8 @@ import "errors"
 
 func LinkInJIT()          { C.LLVMLinkInJIT() }
 func LinkInInterpreter()  { C.LLVMLinkInInterpreter() }
-func StartMultithreaded() { C.LLVMStartMultithreaded() }
-func StopMultithreaded()  { C.LLVMStopMultithreaded()  }
+// func StartMultithreaded() { C.LLVMStartMultithreaded() }
+// func StopMultithreaded()  { C.LLVMStopMultithreaded()  }
 
 type (
 	GenericValue struct {

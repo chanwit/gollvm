@@ -2,7 +2,7 @@ package llvm
 
 /*
 #cgo CFLAGS: -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS
-#cgo LDFLAGS: -lm -lpthread -lpsapi -lstdc++ -limagehlp `llvm-config --libs`
+#cgo LDFLAGS: -lm -lpthread -lpsapi -lstdc++ -limagehlp -lLLVMAsmParser -lLLVMInstrumentation -lLLVMLinker -lLLVMArchive -lLLVMBitReader -lLLVMDebugInfo -lLLVMJIT -lLLVMipo -lLLVMVectorize -lLLVMBitWriter -lLLVMTableGen -lLLVMHexagonCodeGen -lLLVMHexagonDesc -lLLVMHexagonInfo -lLLVMHexagonAsmPrinter -lLLVMPTXCodeGen -lLLVMPTXDesc -lLLVMPTXAsmPrinter -lLLVMPTXInfo -lLLVMMBlazeDisassembler -lLLVMMBlazeAsmParser -lLLVMMBlazeCodeGen -lLLVMMBlazeDesc -lLLVMMBlazeInfo -lLLVMMBlazeAsmPrinter -lLLVMCppBackendCodeGen -lLLVMCppBackendInfo -lLLVMMSP430CodeGen -lLLVMMSP430Desc -lLLVMMSP430Info -lLLVMMSP430AsmPrinter -lLLVMXCoreCodeGen -lLLVMXCoreDesc -lLLVMXCoreInfo -lLLVMCellSPUCodeGen -lLLVMCellSPUDesc -lLLVMCellSPUInfo -lLLVMMipsCodeGen -lLLVMMipsAsmParser -lLLVMMipsDisassembler -lLLVMMipsDesc -lLLVMMipsAsmPrinter -lLLVMMipsInfo -lLLVMARMDisassembler -lLLVMARMAsmParser -lLLVMARMCodeGen -lLLVMARMDesc -lLLVMARMInfo -lLLVMARMAsmPrinter -lLLVMPowerPCCodeGen -lLLVMPowerPCDesc -lLLVMPowerPCInfo -lLLVMPowerPCAsmPrinter -lLLVMSparcCodeGen -lLLVMSparcDesc -lLLVMSparcInfo -lLLVMX86CodeGen -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMX86Disassembler -lLLVMX86AsmParser -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMMCDisassembler -lLLVMMCParser -lLLVMInterpreter -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMMCJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport
 #include <llvm-c/Core.h>
 #include <stdlib.h>
 */

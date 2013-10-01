@@ -1,9 +1,21 @@
 // Taken from: http://npcontemplation.blogspot.com/2008/06/secret-of-llvm-c-bindings.html
 package main
 
-import "fmt"
+/*
+#cgo CFLAGS: -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS
+#cgo LDFLAGS: -lm -lpthread -lpsapi -lstdc++ -lLLVM-3.3
 
+#include <llvm-c/ExecutionEngine.h>
+*/
+import "C"
+import "fmt"
+import "unsafe"
 import "github.com/chanwit/gollvm/llvm"
+
+type GenericVal struct {
+    first uint32
+    second uint32
+}
 
 func test() {
 	llvm.LinkInJIT()
@@ -82,13 +94,24 @@ func test() {
 
 	mod.Dump()
     fmt.Println("DEBUG 5 >>>>")
-    gv := llvm.NewGenericValueFromInt(llvm.Int32Type(), 10, true)
-    fmt.Printf("DEBUG >>> %p\n", gv.C)
-	exec_args := []llvm.GenericValue{gv}
-	exec_res := engine.RunFunction(fac, exec_args)
+    //gv := llvm.NewGenericValueFromInt(llvm.Int32Type(), 10, true)
+    // gv := llvm.ConstIntFromString(llvm.Int32Type(), "1", 0)
+    // gv := llvm.ConstIntFromString(llvm.Int32Type(), "10", 1)
+    // i := 10;
+
+    gvref := (*C.LLVMGenericValueRef)(unsafe.Pointer(&GenericVal{0, 10})) //C.LLVMCreateGenericValueOfInt(llvm.Int32Type().C, C.ulonglong(10), C.LLVMBool(0))
+    //d := C.LLVMGenericValueToInt(gvref, 1)
+    //fmt.Printf("DEBUG 6 >>> %d\n", d)
+
+	// exec_args := []llvm.GenericValue{gv}
+
+	// exec_res := engine.RunFunction(fac, exec_args)
+
+    _ = C.LLVMRunFunction(engine.C, fac.C, 1, gvref)//(*C.LLVMGenericValueRef)(&gvc))
+
 	fmt.Println("-----------------------------------------")
 	fmt.Println("Running fac(10) with JIT...")
-	fmt.Printf("Result: %d\n", exec_res.Int(false))
+	// fmt.Printf("Result: %d\n", exec_res.Int(false))
 }
 
 func main() {
